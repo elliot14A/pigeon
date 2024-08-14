@@ -1,5 +1,8 @@
-<script>
+<script lang="ts">
   import "../app.css";
+  const {children} = $props()
 </script>
 
-<slot />
+<div class="dark">
+  {@render children()}
+</div>

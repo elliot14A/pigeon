@@ -1,12 +1,12 @@
-<!-- src/routes/+page.svelte -->
 <script lang="ts">
-  import Header from "$lib/components/Header.svelte";
-  import MethodSelector from "$lib/components/MethodSelector.svelte";
-  import UrlInput from "$lib/components/UrlInput.svelte";
-  import SendButton from "$lib/components/SendButton.svelte";
+  import Header from "$lib/components/layout/Header.svelte";
+  import MethodSelector from "$lib/components/request/MethodSelector.svelte";
+  import UrlInput from "$lib/components/request/UrlInput.svelte";
+  import SendButton from "$lib/components/request/SendButton.svelte";
+  import ResponseViewer from "$lib/components/response/ResponseViewer.svelte";
+  import RequestBuilder from "$lib/components/request/RequestBuilder.svelte";
 
-  import ResponseBody from "$lib/components/ResponseViewer.svelte";
-  import RequestBuilder from "@/lib/components/RequestBuilder.svelte";
+  let responseBody = ""; // This should be updated when a response is received
 </script>
 
 <div class="flex flex-col h-screen bg-background text-foreground">
@@ -22,8 +22,8 @@
         <RequestBuilder />
       </div>
     </div>
-    <div class="h-1/3 min-h-[200px] p-4 border-t">
-      <ResponseBody />
+    <div class="h-1/3 min-h-[400px] p-4 border-t">
+      <ResponseViewer {responseBody} />
     </div>
   </main>
 </div>

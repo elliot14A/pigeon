@@ -1,9 +1,8 @@
-<!-- src/lib/components/RequestBuilder.svelte -->
 <script lang="ts">
   import { Button } from "$lib/components/ui/button";
-  import QueryParamsTab from "./QueryParamsTab.svelte";
-  import HeadersTab from "./HeadersTab.svelte";
-  import RequestBodyTab from "./RequestBodyTab.svelte";
+  import QueryParamsTab from "$lib/components/request/QueryParamsTab.svelte";
+  import HeadersTab from "$lib/components/request/HeadersTab.svelte";
+  import RequestBodyTab from "$lib/components/request/RequestBodyTab.svelte";
 
   let activeTab = "params";
 
@@ -14,12 +13,12 @@
   ];
 </script>
 
-<div class="border rounded-md">
+<div class="border rounded-md flex flex-col h-full">
   <div class="flex border-b">
     {#each tabs as tab}
       <Button
         variant={activeTab === tab.id ? "default" : "ghost"}
-        class="rounded"
+        class="rounded-none"
         on:click={() => (activeTab = tab.id)}
       >
         {tab.label}
@@ -27,7 +26,7 @@
     {/each}
   </div>
 
-  <div class="p-4">
+  <div class="p-4 flex-grow h-[300px]">
     {#if activeTab === "params"}
       <QueryParamsTab />
     {:else if activeTab === "headers"}

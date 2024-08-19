@@ -1,7 +1,7 @@
-<!-- src/lib/components/ResponseViewer.svelte -->
 <script lang="ts">
   import { Textarea } from "$lib/components/ui/textarea";
-  let responseBody = "";
+
+  export let responseBody = "";
 </script>
 
 <div class="flex flex-col h-full">

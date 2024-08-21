@@ -1,30 +1,23 @@
 import type * as types from "../types";
 
-class MethodClass {
+export class RequestClass {
   method = $state("");
-}
-
-class UrlClass {
   url = $state("");
+  headers = $state<types.KeyValuePair[]>([{ key: "", value: "" }]);
+  params = $state<types.KeyValuePair[]>([{ key: "", value: "" }]);
+  body = $state("");
+
   setUrl(newUrl: string) {
     this.url = newUrl;
   }
-}
-
-class HeadersClass {
-  headers = $state<types.KeyValuePair[]>([{ key: "", value: "" }]);
 
   addHeaders() {
     this.headers.push({ key: "", value: "" });
   }
 
   removeHeader(index: number) {
-    this.headers.filter((_, i) => i !== index);
+    this.headers = this.headers.filter((_, i) => i !== index);
   }
-}
-
-class ParamsClass {
-  params = $state<types.KeyValuePair[]>([{ key: "", value: "" }]);
 
   addParams() {
     this.params.push({ key: "", value: "" });
@@ -35,12 +28,4 @@ class ParamsClass {
   }
 }
 
-class BodyClass {
-  body = $state("");
-}
-
-export const requestBody = new BodyClass();
-export const requestParams = new ParamsClass();
-export const requestHeaders = new HeadersClass();
-export const requestUrl = new UrlClass();
-export const requestMethod = new MethodClass();
+export const request = new RequestClass();

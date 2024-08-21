@@ -1,18 +1,18 @@
 <script lang="ts">
     import KeyValueInput from "$lib/components/shared/KeyValueInput.svelte";
-    import { requestParams } from "$lib/stores/request.svelte";
+    import { request } from "$lib/stores/request.svelte";
 
     function addParam() {
-        requestParams.addParams();
+        request.addParams();
     }
 
     function removeParam(index: number) {
-        requestParams.removeParams(index);
+        request.removeParams(index);
     }
 </script>
 
 <KeyValueInput
-    items={requestParams.params}
+    items={request.params}
     onAdd={addParam}
     onRemove={removeParam}
     keyPlaceholder="Parameter"

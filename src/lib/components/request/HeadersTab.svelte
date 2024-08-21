@@ -1,19 +1,19 @@
 <!-- src/lib/components/request/HeadersTab.svelte -->
 <script lang="ts">
   import KeyValueInput from "$lib/components/shared/KeyValueInput.svelte";
-  import { requestHeaders } from "$lib/stores/request.svelte";
+  import { request } from "$lib/stores/request.svelte";
 
   function addHeader() {
-    requestHeaders.addHeaders();
+    request.addHeaders();
   }
 
   function removeHeader(index: number) {
-    requestHeaders.removeHeader(index);
+    request.removeHeader(index);
   }
 </script>
 
 <KeyValueInput
-  items={requestHeaders.headers}
+  items={request.headers}
   onAdd={addHeader}
   onRemove={removeHeader}
   keyPlaceholder="Header"

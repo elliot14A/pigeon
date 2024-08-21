@@ -1,14 +1,14 @@
 <script lang="ts">
   import * as Select from "$lib/components/ui/select";
   import { HTTP_METHODS } from "$lib/constants";
-  import { requestMethod } from "$lib/stores/request.svelte";
+  import { request} from "$lib/stores/request.svelte";
 
-  $inspect(requestMethod)
+  $inspect(request)
 
 </script>
 
 <Select.Root
-  onSelectedChange={(v) => requestMethod.method = v?.value as string }
+  onSelectedChange={(v) => request.method = v?.value as string }
   portal={null}
 >
   <Select.Trigger class="w-[100px]">

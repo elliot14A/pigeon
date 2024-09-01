@@ -28,7 +28,7 @@
   <div class="mb-2">
     <Select.Root onSelectedChange={updateBodyType}>
       <Select.Trigger class="w-[200px]">
-        <Select.Value placeholder="Select body type" />
+        <Select.Value />
       </Select.Trigger>
       <Select.Content>
         {#each bodyTypes as type}
@@ -46,4 +46,3 @@
     />
   </div>
 </div>
-

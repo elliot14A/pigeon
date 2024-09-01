@@ -1,5 +1,10 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+#![allow(dead_code)]
+mod application;
+mod domain;
+mod infrastructure;
+mod interfaces;
 
 use serde::Deserialize;
 use tracing::Level;

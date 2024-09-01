@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod tests;
+
 use crate::application::ports::HttpClientRepository;
 use crate::domain::error::Result;
 use crate::domain::models::request::{

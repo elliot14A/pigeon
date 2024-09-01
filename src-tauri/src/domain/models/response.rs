@@ -83,10 +83,10 @@ impl HttpResponse {
         self.headers.get("Content-Type").map(|s| s.as_str())
     }
 
-    pub fn get_body_as_text(&self) -> Option<&str> {
+    pub fn get_body_as_text(&self) -> Option<String> {
         match &self.body {
-            Body::Text(s) | Body::Html(s) | Body::Xml(s) => Some(s),
-            Body::Json(v) => Some(v.as_str()?),
+            Body::Text(s) | Body::Html(s) | Body::Xml(s) => Some(s.to_owned()),
+            Body::Json(v) => Some(v.to_string()),
             _ => None,
         }
     }

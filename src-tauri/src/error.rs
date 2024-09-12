@@ -1,6 +1,7 @@
+use serde::{Deserialize, Serialize};
 use snafu::Snafu;
 
-#[derive(Debug, Snafu)]
+#[derive(Debug, Snafu, Serialize, Deserialize)]
 #[snafu(visibility(pub))]
 pub enum Error {}
 

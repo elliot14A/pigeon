@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use ts_rs::TS;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct HttpResponse {
     pub status: Status,
     pub headers: HashMap<String, String>,
@@ -10,13 +12,15 @@ pub struct HttpResponse {
     pub size: Size,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, TS)]
+#[ts(export)]
 pub struct Status {
     pub code: u16,
     pub text: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, TS)]
+#[ts(export)]
 pub enum Body {
     Empty,
     Text(String),
@@ -26,14 +30,16 @@ pub enum Body {
     Binary(Vec<u8>),
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct Timing {
     pub start: f64,
     pub end: f64,
     pub duration: f64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct Size {
     pub headers: usize,
     pub body: usize,

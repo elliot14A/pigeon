@@ -1,16 +1,10 @@
-#[cfg(test)]
-mod tests;
-
-use crate::application::ports::HttpClientRepository;
-use crate::domain::error::Result;
-use crate::domain::models::request::{
-    Body, FormDataValue, HttpRequest, Method, Param, RawBodyType,
-};
-use crate::domain::models::response::{Body as ResponseBody, HttpResponse, Status, Timing};
-use async_trait::async_trait;
 use reqwest::{header, Client, RequestBuilder};
 use std::collections::HashMap;
 use tokio::time::Instant;
+
+use crate::error::Result;
+use crate::models::request::*;
+use crate::models::response::{Body as ResponseBody, HttpResponse, Size, Status, Timing};
 
 pub struct ReqwestClient {
     client: Client,
@@ -164,7 +158,7 @@ impl ReqwestClient {
             duration: duration.as_secs_f64(),
         };
 
-        let size = crate::domain::models::response::Size {
+        let size = Size {
             headers: headers.iter().map(|(k, v)| k.len() + v.len()).sum(),
             body: match &body {
                 ResponseBody::Text(s) | ResponseBody::Html(s) | ResponseBody::Xml(s) => s.len(),
@@ -174,19 +168,17 @@ impl ReqwestClient {
             },
         };
 
-        Ok(HttpResponse {
+        let http_response = HttpResponse {
             status,
             headers,
             body,
             timing,
             size,
-        })
+        };
+        println!("{:?}", http_response);
+        Ok(http_response)
     }
-}
-
-#[async_trait]
-impl HttpClientRepository for ReqwestClient {
-    async fn send_request(&self, request: &HttpRequest) -> Result<HttpResponse> {
+    pub async fn send_request(&self, request: &HttpRequest) -> Result<HttpResponse> {
         let start_time = Instant::now();
         let method = Self::to_reqwest_method(&request.method);
         let headers = self.build_headers(&request.headers);

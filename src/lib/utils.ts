@@ -2,7 +2,6 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
-import { invoke } from "@tauri-apps/api";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -63,6 +62,3 @@ export const flyAndScale = (
 };
 
 
-export async function logToBackend(message: string) {
-	await invoke("log_message", { message });
-}

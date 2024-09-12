@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use ts_rs::TS;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct HttpRequest {
     pub method: Method,
     pub url: String,
@@ -11,7 +13,8 @@ pub struct HttpRequest {
     pub timeout: Option<u64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub enum Method {
     GET,
     POST,
@@ -22,13 +25,15 @@ pub enum Method {
     OPTIONS,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct Param {
     pub key: String,
     pub value: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub enum Body {
     Raw(RawBody),
     FormData(Vec<FormDataItem>),
@@ -36,13 +41,15 @@ pub enum Body {
     Binary(String), // File path
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct RawBody {
     pub content: String,
     pub content_type: RawBodyType,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub enum RawBodyType {
     Text,
     Json,
@@ -51,13 +58,15 @@ pub enum RawBodyType {
     Javascript,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub struct FormDataItem {
     pub key: String,
     pub value: FormDataValue,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, TS)]
+#[ts(export)]
 pub enum FormDataValue {
     Text(String),
     File {
@@ -101,4 +110,3 @@ impl HttpRequest {
         self
     }
 }
-

@@ -20,7 +20,8 @@
     "monaco-editor": "^0.50.0",
     "svelte-radix": "^1.1.0",
     "tailwind-merge": "^2.5.2",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-variants": "^0.2.1",
+    "tauri-plugin-log-api": "https://github.com/tauri-apps/tauri-plugin-log#v1"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
